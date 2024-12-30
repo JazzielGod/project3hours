@@ -6,6 +6,9 @@
     <h1>Create new Post</h1>
 
     <form action="{{ route('posts.store') }}" method="POST">
+        
+        @csrf
+
         <label>
             Title
             <input name="title" type="text">

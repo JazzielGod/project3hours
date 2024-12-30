@@ -15,6 +15,13 @@
     {{-- @include('partials.navigation') --}}
     <x-layouts.navigation />
     {{-- <pre>{{ $sum }}</pre> --}}
+
+    @if (@session('status'))
+        <div class="">
+            {{ session('status') }}
+        </div>
+    @endif
+
     {{ $slot }}
 
     
