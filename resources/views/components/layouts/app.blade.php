@@ -10,6 +10,9 @@
     {{-- Components --}}
     <title>Jazz - {{ $title ?? '' }}</title>
     <meta name="description" content="{{ $metaDescription ?? 'Default meta description' }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script> --}}
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     {{-- @include('partials.navigation') --}}
