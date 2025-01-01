@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SavePostRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -22,25 +23,29 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post]);
     }
 
-    public function store(Request $request)
+    public function store(SavePostRequest $request)
     {
 
-        $request->validate([
-            'title' => 'required|min:4',
-            'body' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'title' => 'required|min:4',
+        //     'body' => 'required',
+        // ]);
 
-        $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->save();
+        // dd($validated);
 
-        session()->flash('status', 'Post created successfully!');
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->body = $request->body;
+        // $post->save();
 
-        return to_route('posts.index');
+        Post::create($request->validated());
+
+        // session()->flash('status', 'Post created successfully!');
+
+        return to_route('posts.index')->with('status', 'Post created successfully!');
     }
 
     public function edit(Post $post)
@@ -48,19 +53,21 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
-    public function update(Request $request, Post $post){
+    public function update(SavePostRequest $request, Post $post){
         
-        $request->validate([
-            'title' => 'required|min:4',
-            'body' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'title' => 'required|min:4',
+        //     'body' => 'required',
+        // ]);
 
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->save();
+        // $post->title = $request->title;
+        // $post->body = $request->body;
+        // $post->save();
 
-        session()->flash('status', 'Post updated successfully!');
+        $post->update($request->validated());
 
-        return to_route('posts.show', $post);
+        // session()->flash('status', 'Post updated successfully!');
+
+        return to_route('posts.show', $post)->with('status', 'Post updated successfully!');
     }
 }

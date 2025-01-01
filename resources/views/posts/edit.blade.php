@@ -5,29 +5,12 @@
 
     <h1>Formulario de Edición</h1>
     <a href="{{ route('posts.index') }}">Back to blog</a>
+    {{-- @dump($post->toArray()) --}}
 
     <form action="{{ route('posts.update', $post) }}" method="POST">
         
         @csrf @method('PATCH')
-
-        <label>
-            Title
-            <input name="title" type="text" value="{{ old('title', $post->title) }}">
-            <br>
-            @error('title')
-                <small style="color: red">{{ $message }}</small>
-                <br>
-            @enderror
-        </label>
-        <label>
-            Body
-            <textarea name="body">{{ old('body', $post->body) }}</textarea>
-            <br>
-            @error('body')
-                <small style="color: red">{{ $message }}</small>
-                <br
-            @enderror
-        </label>
+        @include('posts.form-fields')
         <br>
         <button type="submit">Update Post</button>
         <br>
