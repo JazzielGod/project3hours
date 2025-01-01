@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities; */
 
-$white: #ffffff;
+// $white: #ffffff;
 
-body {
-    background-color: red;
-}
+// body {
+//     background-color: red;
+// }
 
-h1 {
-    color: $white;
-}
+// h1 {
+//     color: $white;
+// }
 
-a {
-    color: $white;
-}
+// a {
+//     color: $white;
+// }
+
+$body-bg: #f8f9fa;
+$primary: #007bff;
+@import 'bootstrap/scss/bootstrap';
