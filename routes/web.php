@@ -30,3 +30,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 Route::view('/register', 'auth.register')->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
+
+Route::get('/prueba', function () {
+    return "Hola mundo";
+});
