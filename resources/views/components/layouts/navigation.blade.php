@@ -41,6 +41,12 @@
                         Contact
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('register') }}"
+                        class="text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('register') ? 'text-sky-600 dark:text-white' : 'text-slate-400' }}">
+                        Register
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
