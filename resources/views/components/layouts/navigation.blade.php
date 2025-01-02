@@ -41,12 +41,31 @@
                         Contact
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('register') }}"
-                        class="text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('register') ? 'text-sky-600 dark:text-white' : 'text-slate-400' }}">
-                        Register
-                    </a>
-                </li>
+
+                @guest
+                    <li>
+                        <a href="{{ route('register') }}"
+                            class="text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('register') ? 'text-sky-600 dark:text-white' : 'text-slate-400' }}">
+                            Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('login') }}"
+                            class="text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('login') ? 'text-sky-600 dark:text-white' : 'text-slate-400' }}">
+                            Login
+                        </a>
+                    </li>
+                @endguest
+
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a href="#"
+                            class="lg:px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white text-slate-400"
+                            onclick="this.closest('form').submit()">Logout</a>
+                    </form>
+                @endauth
+
             </ul>
         </div>
     </div>
